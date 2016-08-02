@@ -8,6 +8,10 @@ high-order summation-by-parts (SBP) finite difference approximation.
 * *laplacian.m* is a function that constructs the Laplacian operator of a radial function
 * *sbp_staggered.m* is a function that wraps the implementation of the high-order SBP operators.
 
+Publication
+=================
+* Prochnow, B., O. O'Reilly, E. M. Dunham, and N. A. Petersson (2016), Treatment of the polar coordinate singularity in axisymmetric wave propagation using high-order summation-by-parts operators on a staggered grid, Computers and Fluids, submitted 29 July 2016
+
 Authors
 =================
 Please see the AUTHORS file.
