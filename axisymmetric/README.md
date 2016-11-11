@@ -10,5 +10,5 @@ high-order summation-by-parts (SBP) finite difference approximation.
 
 Publication
 =================
-* B. Prochnow, O. O'Reilly, E. M. Dunham, and N. A. Petersson, Treatment of the polar coordinate singularity in axisymmetric wave propagation using high-order summation-by-parts operators on a staggered grid, Computers and Fluids, Submitted 29 July 2016
+* B. Prochnow, O. O'Reilly, E. M. Dunham, and N. A. Petersson, Treatment of the polar coordinate singularity in axisymmetric wave propagation using high-order summation-by-parts operators on a staggered grid, Computers and Fluids, Submitted July 29, 2016
  
