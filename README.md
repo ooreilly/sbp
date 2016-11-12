@@ -5,7 +5,7 @@ This repository contains summation-by-parts (SBP) operators
 The directory *staggered* contains a MATLAB implementation of the SBP operators presented in  
 
 * O. O'Reilly, T. Lundquist, J. Nordström, and E. M. Dunham, Energy stable and high-order-accurate finite
-  difference methods on staggered grids, Journal of Computational Physics, Submitted November 10, 2016 
+  difference methods on staggered grids, Journal of Computational Physics, Submitted November 11, 2016 
 
 ## Axisymmetric SBP operators
 The directory *axisymmetric* contains a MATLAB implementation of the SBP operators presented in  
