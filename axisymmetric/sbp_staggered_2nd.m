@@ -4,42 +4,31 @@ if nargin < 3
   test = false;
 end
 
-assert(n >= 4,'Not enough grid points');
+assert(n >= 3,'Not enough grid points');
 
 % Coefficients determined such that the SBP property is satisfied
-pm1 = 1;
-qm01 = -pm1 + 2;
-qp11 = pm1 - 2;
-qm11 = pm1 - 2;
-qp02 = pm1 - 1;
-pp0 = pm1 - 1/2;
-qm00 = pm1 - 2;
-qp10 = 0;
-qp12 = -pm1 + 2;
+qm00 = -1;
 qp00 = -1;
-pp1 = -pm1 + 2;
-qp01 = -pm1 + 2;
-pm0 = -pm1 + 2;
-qm10 = -pm1 + 1;
+pm0 = 1;
+qp01 = 1;
+pp0 = 1/2;
 
 
 
 % Number of coefficients
-b = 2;
+b = 1;
 
 % Q+ and Q-, top-left corner
 QpL = [...
-qp00, qp01, qp02;
- qp10, qp11, qp12
+qp00, qp01
 ];
 QmL = [...
-0, 0;
- qm00, qm01;
- qm10, qm11
+0;
+ qm00
 ];
 
 % Q+ and Q-
-w = b; 
+w = b+1; 
 s = rot90(vander(1:w))\((0:(w-1)).*(w/2-1/2+1).^([0 0:w-2]))';  
 Qp = spdiags(repmat(-s(end:-1:1)',[n+2 1]), -(w/2-1):w/2, n+2, n+2); 
 Qm = spdiags(repmat(s(:)',[n+2 1]), -(w/2-1)-1:w/2-1, n+2, n+2);
@@ -56,9 +45,9 @@ Qm(end-b:end,end-b+1:end) = -fliplr(flipud(QmL));
 Pp = ones(n+1,1);
 Pm = ones(n+2,1);
 
-Pp(1:b) = [pp0,  pp1]; 
+Pp(1:b) = [pp0]; 
 Pp(end-b+1:end) = Pp(b:-1:1);
-Pm(1:b+1) = [0,  pm0,  pm1];
+Pm(1:b+1) = [0,  pm0];
 Pm(end-b:end) = Pm(b+1:-1:1);
 Pp = spdiags(Pp,0,n+1,n+1);
 Pm = spdiags(Pm,0,n+2,n+2);
@@ -66,11 +55,13 @@ Pm = spdiags(Pm,0,n+2,n+2);
 Pp = h*Pp;
 Pm = h*Pm;
 
+% nodal and cell-centered grids
 xp = h*[0:n]';
 xm = h*[0 1/2+0:n n]';  
 
 
 % Test operators
+test = true;
 if test
 for j=0:b/2
   disp([ 'Dp, j = ' num2str(j) ' Error max = ' ...
