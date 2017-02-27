@@ -1,11 +1,11 @@
-function [xp,xm,Pp,Pm,Qp,Qm] = sbp_staggered_2nd(n,h)
-% [xp,xm,Pp,Pm,Qp,Qm] = sbp_staggered_2nd(n,h)
-% n : Specifies the number of grid points, n+1 (x+ grid) and n+2 (x- grid)
-% h : Specifies the grid spacing
+function [xp, xm, Pp, Pm, Qp, Qm] = sbp_staggered_2(n, h)
+% [xp, xm, Pp, Pm, Qp, Qm] = sbp_staggered_2(n,h)
+% Input arguments:
+% n : number of grid points  (n+1) xp grid (n+2) xm grid
+% h : grid spacing
 
-assert(n >= 3,'Not enough grid points');  
+assert(n >= 3, 'Not enough grid points');  
 
-% Coefficients determined such that the SBP property is satisfied
 qm20 = -1/4;
 qm01 = 1/2;
 qp11 = -1/4;
@@ -24,9 +24,6 @@ pm0 = 1/2;
 pm2 = 5/4;
 qm10 = -1/4;
 
-% Number of coefficients
-b = 2;
-
 % Q+ and Q-, top-left corner
 QpL = [...
 qp00, qp01, qp02;
@@ -39,8 +36,9 @@ qm00, qm01;
 ];
 
 % Q+ and Q-
+b = 2;
 w = b; 
-s = rot90(vander(1:w))\((0:(w-1)).*(w/2-1/2+1).^([0 0:w-2]))';  
+s = [-1, 1]';  
 Qp = spdiags(repmat(-s(end:-1:1)',[n+2 1]), -(w/2-1):w/2, n+2, n+2); 
 Qm = spdiags(repmat(s(:)',[n+2 1]), -(w/2-1)-1:w/2-1, n+2, n+2);
 Qp(end,:) = [];
@@ -66,6 +64,5 @@ Pm = spdiags(Pm,0,n+2,n+2);
 Pp = h*Pp;
 Pm = h*Pm;
 
-% nodal and cell-centered grids
 xp = h*[0:n]';
 xm = h*[0 1/2+0:n n]';  
