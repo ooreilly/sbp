@@ -1,6 +1,11 @@
 # sbp
 This repository contains summation-by-parts (SBP) operators
 
+## Compatible staggered and upwind SBP operators
+The directory *staggered-upwind* contains a MATLAB implementation of the SBP operators presented in 
+
+* K. Mattsson, O. O'Reilly, Compatible diagonal-norm staggered and upwind SBP operators, Journal of Computational Physics, Submitted April 9, 2017
+
 ## Staggered grid SBP operators
 The directory *staggered* contains a MATLAB implementation of the SBP operators presented in  
 
