@@ -1,6 +1,11 @@
 # sbp
 This repository contains summation-by-parts (SBP) operators
 
+## SBP Staggered interpolation and differentiation operators 
+The directory *covariant* contains a MATLAB implementation of the SBP operators presented in 
+* O. O'Reilly, N. A. Petersson, Energy conservative SBP discretizations of the acoustic wave equation in covariant form on staggered curvilinear grids
+https://arxiv.org/abs/1907.01105
+
 ## Compatible staggered and upwind SBP operators
 The directory *staggered-upwind* contains a MATLAB implementation of the SBP operators presented in 
 
