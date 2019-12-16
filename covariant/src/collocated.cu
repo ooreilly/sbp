@@ -3,7 +3,7 @@
 const static int tx = 32;
 const static int ty = 8;
 
-const static int nb = 4;
+const static int nb = 2;
 
 static __device__ __constant__ Tv ak[5];
 static __device__ __constant__ Tv bk[5];
@@ -22,6 +22,9 @@ __global__ void col_rates_int(Tv RSTRCT *dp,
                 const Tv RSTRCT *v1, 
                 const Tv RSTRCT *v2, 
                 const Tv RSTRCT *J, 
+                const Tv RSTRCT *g11, 
+                const Tv RSTRCT *g12, 
+                const Tv RSTRCT *g22, 
                 const Ti nx, const Ti ny, const
                 Ti my, const Tv hi1, const Tv hi2, const int k)
 {
@@ -80,39 +83,142 @@ __global__ void col_rates_int(Tv RSTRCT *dp,
         Tv J_p0m1 = J[p0m1];
         Tv J_p0m2 = J[p0m2];
 
+        Tv g11_p0p0 = g11[p0p0];
+        Tv g12_p0p0 = g12[p0p0];
+        Tv g22_p0p0 = g22[p0p0];
+
         Tv Ji = 1.0 / J_p0p0;
 
         Tv c2 = -0.083333333333333;
         Tv c1 =  0.666666666666667;
 
-        // Write
+        // Store
         if (i >= nb && i < ny - nb && j >= nb && j < nx - nb) {
                 dp[p0p0] =
                     ak[k] * dp_p0p0 +
-                    Ji * hi1 *
+                   - Ji * hi1 *
                         (c2 * (J_p2p0 * v1_p2p0 - J_m2p0 * v1_m2p0) +
-                         c1 * (J_p1p0 * v1_p1p0 - J_m1p0 * v1_m1p0)) +
+                         c1 * (J_p1p0 * v1_p1p0 - J_m1p0 * v1_m1p0)) 
+                   -
                     Ji * hi2 *
                         (c2 * (J_p0p2 * v2_p0p2 - J_p0m2 * v2_p0m2) 
                        + c1 * (J_p0p1 * v2_p0p1 - J_p0m1 * v2_p0m1));
 
-                dv1[p0p0] = ak[k] * dv1_p0p0 + hi1 * (c2 * (p_p2p0 - p_m2p0) +
-                                                      c1 * (p_p1p0 - p_m1p0));
-                dv2[p0p0] = ak[k] * dv2_p0p0 + hi2 * (c2 * (p_p0p2 - p_p0m2) +
-                                                      c1 * (p_p0p1 - p_p0m1));
+                Tv dpdr1 = hi1 * (c2 * (p_p2p0 - p_m2p0) +
+                                  c1 * (p_p1p0 - p_m1p0));
+                Tv dpdr2 = hi2 * (c2 * (p_p0p2 - p_p0m2) +
+                                  c1 * (p_p0p1 - p_p0m1));
+                dv1[p0p0] =
+                    ak[k] * dv1_p0p0 - g11_p0p0 * dpdr1 - g12_p0p0 * dpdr2;
+                dv2[p0p0] =
+                    ak[k] * dv2_p0p0 - g12_p0p0 * dpdr1 - g22_p0p0 * dpdr2;
         }
+}
+
+__global__ void col_periodic_x(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
+                             const Ti nx, const Ti ny,
+                             const Ti my) {
+
+
+        // top and bottom boundary
+        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
+        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
+        int p0p0 = j + i * my;
+        int p0p1 = p0p0 + nb;
+        
+        int p0m1 = p0p0 + ny - nb;
+        int p0m2 = p0m1 - nb;
+
+
+        if (j < nb && i < nx) {
+                p[p0p0] = p[p0m2];
+                p[p0m1] = p[p0p1];
+        }
+
+}
+
+__global__ void col_periodic_y(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
+                             const Ti nx, const Ti ny,
+                             const Ti my) {
+
+
+        // left and right boundary
+        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
+        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
+        int p0p0 = i + j * my;
+        int p1p0 = p0p0 + nb * my;
+        
+        int m1p0 = p0p0 + my * nx - nb * my;
+        int m2p0 = m1p0 - nb * my;
+
+
+        if (j < nb && i >= nb && i < ny - nb) {
+                p[p0p0] = p[m2p0];
+        }
+        if (j < nb && i >= nb && i < ny - nb) {
+                p[m1p0] = p[p1p0];
+        }
+
+}
+
+__global__ void col_update_int(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
+                               const Tv RSTRCT *dp, const Tv RSTRCT *dv1,
+                               const Tv RSTRCT *dv2, const Ti nx, const Ti ny,
+                               const Ti my, const Tv dt, const int k) {
+
+        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
+        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
+
+        int p0p0 = i + j * my;
+
+        if (i >= nb && i < ny - nb && j >= nb && j < nx - nb) {
+        p[p0p0]  = p[p0p0]  + bk[k] * dt  * dp[p0p0];   
+        v1[p0p0] = v1[p0p0] + bk[k] * dt * dv1[p0p0];   
+        v2[p0p0] = v2[p0p0] + bk[k] * dt * dv2[p0p0];   
+        }
+
 }
 
 void col_rates(dArray<Tv>& dp, dArray<Tv>& dv1, dArray<Tv>& dv2,  
                dArray<Tv>& p, dArray<Tv>& v1, dArray<Tv>& v2, 
                dArray<Tv>& J, 
+               dArray<Tv>& g11, 
+               dArray<Tv>& g12, 
+               dArray<Tv>& g22, 
                const Ti nx,
                const Ti ny, const Ti my, const Tv hi1, const Tv hi2, const int k)
 {
         dim3 threads (tx, ty, 1);
-        dim3 blocks ((nx - 1) / tx + 1, (ny - 1) / ty + 1, 1);
+        dim3 blocks ((ny - 1) / tx + 1, (nx - 1) / ty + 1, 1);
         col_rates_int<<<threads, blocks>>>(dp.x, dv1.x, dv2.x, p.x, v1.x, v2.x,
-                                           J.x, nx, ny, my, hi1, hi2, k);
+                                           J.x, g11.x, g12.x, g22.x, nx, ny, my,
+                                           hi1, hi2, k);
 }
 
+void col_update(
+ dArray<Tv>& p, dArray<Tv>& v1, dArray<Tv>& v2,        
+ dArray<Tv>& dp, dArray<Tv>& dv1, dArray<Tv>& dv2, 
+ const Ti nx, const Ti ny, const Ti my, const Tv dt, const Ti k)
+{
+        dim3 threads (tx, ty, 1);
+        dim3 blocks ((ny - 1) / tx + 1, (nx - 1) / ty + 1, 1);
+        col_update_int<<<threads, blocks>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
+                                           nx, ny, my, dt, k);
+
+}
+ void col_periodic(
+ dArray<Tv>& p, dArray<Tv>& v1, dArray<Tv>& v2,        
+ const Ti nx, const Ti ny, const Ti my)
+{
+        {
+        dim3 threads (tx, 1, 1);
+        dim3 blocks ((nx - 1) / tx + 1, nb, 1);
+        col_periodic_x<<<threads, blocks>>>(p.x, v1.x, v2.x, nx, ny, my);
+        }
+        {
+        dim3 threads (tx, 1, 1);
+        dim3 blocks ((ny - 1) / tx + 1, nb, 1);
+        col_periodic_y<<<threads, blocks>>>(p.x, v1.x, v2.x, nx, ny, my);
+        }
+}
 #undef RSTRCT
