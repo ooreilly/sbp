@@ -12,6 +12,7 @@
 
 #include "helper.hpp"
 #include "collocated.cu"
+#include "staggered.cu"
 
 int main(int argc, char **argv) {
 
@@ -32,6 +33,7 @@ int main(int argc, char **argv) {
         int nt = 2000;
         int nx = cfg["nx"];
         int ny = cfg["ny"];
+        int scheme = cfg["scheme"];
         int my = ny;
         int ninfo = 100;
         int nvtk = 100;
@@ -43,19 +45,24 @@ int main(int argc, char **argv) {
         hArray<Tv> p_ = read(project_dir + "p.bin");
         hArray<Tv> v1_ = read(project_dir + "v1.bin");
         hArray<Tv> v2_ = read(project_dir + "v2.bin");
+
+        // Metrics, collocated
         hArray<Tv> J_ = read(project_dir + "J.bin");
         hArray<Tv> g11_ = read(project_dir + "g11.bin");
         hArray<Tv> g12_ = read(project_dir + "g12.bin");
         hArray<Tv> g22_ = read(project_dir + "g22.bin");
 
+        // Metrics, staggered
+        hArray<Tv> Jp_ = read(project_dir + "Jp.bin");
+        hArray<Tv> J1_ = read(project_dir + "J1.bin");
+        hArray<Tv> J2_ = read(project_dir + "J2.bin");
+        hArray<Tv> g1_11_ = read(project_dir + "g1_11.bin");
+        hArray<Tv> gp_12_ = read(project_dir + "gp_12.bin");
+        hArray<Tv> g2_22_ = read(project_dir + "g2_22.bin");
+
         hArray<Tv> xp_ = read(project_dir + "xp.bin");
         hArray<Tv> yp_ = read(project_dir + "yp.bin");
         hArray<Tv> d_ = read(project_dir + "d.bin");
-
-
-        //dump2d(p_, nx, ny);
-        //dump2d(v1_, nx, ny);
-        //dump2d(v2_, nx, ny);
         
         //Fields
         dArray<Tv> p = htod(p_);
@@ -67,11 +74,19 @@ int main(int argc, char **argv) {
         dArray<Tv> dv1(v1_.size);
         dArray<Tv> dv2(v2_.size);
 
-        // Metrics
+        // Collocated Metrics
         dArray<Tv> J = htod(J_);
         dArray<Tv> g11 = htod(g11_);
         dArray<Tv> g12 = htod(g12_);
         dArray<Tv> g22 = htod(g22_);
+
+        // Staggered Metrics
+        dArray<Tv> Jp = htod(Jp_);
+        dArray<Tv> J1 = htod(J1_);
+        dArray<Tv> J2 = htod(J2_);
+        dArray<Tv> g1_11 = htod(g1_11_);
+        dArray<Tv> gp_12 = htod(gp_12_);
+        dArray<Tv> g2_22 = htod(g2_22_);
 
         dArray<Tv> d = htod(d_);
 
@@ -86,7 +101,9 @@ int main(int argc, char **argv) {
         float elapsed = 0;
         cudaEventRecord(start);
         printf("step \t time \t elapsed (s) \t time per step (ms) \n");
+        int run = 1;
 
+        if (run) {
         col_periodic(J, g11, g22, nx, ny, my);
         for (int step = 0; step < nt; ++step) {
 
@@ -109,31 +126,58 @@ int main(int argc, char **argv) {
                 for (int k = 0; k < rk4_n; ++k) {
                         t = step * dt + c[k]*dt;
 
-                        col_periodic(p, v1, v2, nx, ny, my);
-                        col_rates(dp, dv1, dv2, p, v1, v2, J, g11, g12, g22, nx,
-                                  ny, my, hi1, hi2, k);
+                        if (scheme == 0) {
+                                col_periodic(p, v1, v2, nx, ny, my);
+                                col_rates(dp, dv1, dv2, p, v1, v2, J, g11, g12,
+                                          g22, nx, ny, my, hi1, hi2, k);
+                        } else if (scheme == 1) {
+                                st_periodic(p, v1, v2, nx, ny, my);
+                                st_rates(dp, dv1, dv2, p, v1, v2, Jp, J1, J2,
+                                                g1_11, gp_12,
+                                         g2_22, nx, ny, my, hi1, hi2, k);
 
-                        //dp = dp + d * g(t + c[k]*dt)
+                        }
+
+                        // dp = dp + d * g(t + c[k]*dt)
                         Tv gval = ricker(t);
                         axpy(cublasH, dp, d, gval);
 
-                        col_update(p, v1, v2, dp, dv1, dv2, nx, ny, my, dt, k);
+                        if (scheme == 0) {
+                                col_update(p, v1, v2, dp, dv1, dv2, nx, ny, my,
+                                           dt, k);
+                        } else if (scheme == 1) {
+                                st_update(p, v1, v2, dp, dv1, dv2, nx, ny, my,
+                                          dt, k);
+                        }
                 }
                 t = (1 + step) * dt;
 
         }
-        //dump2d(p_, nx, ny);
+        }  else {
+        //dump2d(Jp_, nx, ny);
+        //dump2d(J1_, nx, ny);
+        //dump2d(J2_, nx, ny);
+        //dump2d(g1_11_, nx, ny);
+        //dump2d(gp_12_, nx, ny);
+        //dump2d(g2_22_, nx, ny);
+        dump2d(Jp_, nx, ny);
+        dump2d(gp_12_, nx, ny);
+        dump2d(p_, nx, ny);
+        //Dump2d(v1_, nx, ny);
+        //Dump2d(v2_, nx, ny);
 
-        col_periodic(p, v1, v2, nx, ny, my);
-        //col_rates(dp, dv1, dv2, p, v1, v2, J, g11, g12, g22, nx,
-        //                          ny, my, hi1, hi2, 0);
+        //col_periodic(p, v1, v2, nx, ny, my);
+        st_rates(dp, dv1, dv2, p, v1, v2, Jp, J1, J2, g1_11, gp_12, g2_22, nx,
+                                  ny, my, hi1, hi2, 0);
 
-        dtoh(p_, p);
+        dtoh(p_, dp);
         dtoh(v1_, dv1);
         dtoh(v2_, dv2);
+        dump2d(v1_, nx, ny);
+        dump2d(v2_, nx, ny);
 
 
-        //dump2d(p_, nx, ny);
+        }
         //dump2d(v1_, nx, ny);
         //dump2d(v2_, nx, ny);
 
