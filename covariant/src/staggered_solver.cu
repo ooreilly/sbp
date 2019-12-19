@@ -40,21 +40,21 @@ int main(int argc, char **argv) {
         Tv hi1 = cfg["hi1"];
         Tv hi2 = cfg["hi2"];
         Tv dt = cfg["dt"];
+
+        std::string output_dir = cfg["outputdir"];
+        output_dir += "/";
         dump(cfg);
 
         hArray<Tv> p_ = read(project_dir + "p.bin");
         hArray<Tv> v1_ = read(project_dir + "v1.bin");
         hArray<Tv> v2_ = read(project_dir + "v2.bin");
 
-        hArray<Tv> J_ = read(project_dir + "J.bin");
-        hArray<Tv> g11_ = read(project_dir + "g11.bin");
-        hArray<Tv> g12_ = read(project_dir + "g12.bin");
-        hArray<Tv> g22_ = read(project_dir + "g22.bin");
-
-        dArray<Tv> J = htod(J_);
-        dArray<Tv> g11 = htod(g11_);
-        dArray<Tv> g12 = htod(g12_);
-        dArray<Tv> g22 = htod(g22_);
+        hArray<Tv> Jp_ = read(project_dir + "Jp.bin");
+        hArray<Tv> J1_ = read(project_dir + "J1.bin");
+        hArray<Tv> J2_ = read(project_dir + "J2.bin");
+        hArray<Tv> g1_11_ = read(project_dir + "g1_11.bin");
+        hArray<Tv> gp_12_ = read(project_dir + "gp_12.bin");
+        hArray<Tv> g2_22_ = read(project_dir + "g2_22.bin");
 
         hArray<Tv> xp_ = read(project_dir + "xp.bin");
         hArray<Tv> yp_ = read(project_dir + "yp.bin");
@@ -70,6 +70,13 @@ int main(int argc, char **argv) {
         dArray<Tv> dv1(v1_.size);
         dArray<Tv> dv2(v2_.size);
 
+        // Staggered Metrics
+        dArray<Tv> Jp = htod(Jp_);
+        dArray<Tv> J1 = htod(J1_);
+        dArray<Tv> J2 = htod(J2_);
+        dArray<Tv> g1_11 = htod(g1_11_);
+        dArray<Tv> gp_12 = htod(gp_12_);
+        dArray<Tv> g2_22 = htod(g2_22_);
 
         dArray<Tv> d = htod(d_);
 
@@ -113,10 +120,22 @@ int main(int argc, char **argv) {
                         Tv gval = ricker(t);
                         axpy(cublasH, dp, d, gval);
 
-                        col_update(p, v1, v2, dp, dv1, dv2, nx, ny, my, dt, k);
+                        st_update(p, v1, v2, dp, dv1, dv2, nx, ny, my, dt, k);
+                        
                 }
                 t = (1 + step) * dt;
 
+        }
+
+        // Write log file
+        {
+        std::string out = output_dir + "log.txt";
+        FILE *fh = fopen(out.c_str(), "w");
+        fprintf(fh, "nx=%d\n", nx);
+        fprintf(fh, "ny=%d\n", ny);
+        fprintf(fh, "elapsed=%g\n", elapsed * 1e-3);
+        fprintf(fh, "nt=%d\n", nt);
+        fclose(fh);
         }
 
         cublasErrCheck(cublasDestroy(cublasH));

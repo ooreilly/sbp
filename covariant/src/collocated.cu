@@ -1,9 +1,9 @@
 #define RSTRCT __restrict__
 
 const static int tx = 32;
-const static int ty = 8;
+const static int ty = 1;
 
-const static int nb = 2;
+const static int nb = 8;
 
 static __device__ __constant__ Tv ak[5];
 static __device__ __constant__ Tv bk[5];
@@ -15,6 +15,7 @@ void col_init(const Tv *ak_, const Tv *bk_)
         cudaErrCheck(cudaMemcpyToSymbol(bk, bk_, sizeof(Tv) * 5));
 }
 
+__launch_bounds__(32)
 __global__ void col_rates_int(Tv RSTRCT *dp, 
                 Tv RSTRCT *dv1, 
                 Tv RSTRCT *dv2, 
@@ -190,7 +191,7 @@ void col_rates(dArray<Tv>& dp, dArray<Tv>& dv1, dArray<Tv>& dv2,
 {
         dim3 threads (tx, ty, 1);
         dim3 blocks ((ny - 1) / tx + 1, (nx - 1) / ty + 1, 1);
-        col_rates_int<<<threads, blocks>>>(dp.x, dv1.x, dv2.x, p.x, v1.x, v2.x,
+        col_rates_int<<<blocks, threads>>>(dp.x, dv1.x, dv2.x, p.x, v1.x, v2.x,
                                            J.x, g11.x, g12.x, g22.x, nx, ny, my,
                                            hi1, hi2, k);
 }
@@ -202,7 +203,7 @@ void col_update(
 {
         dim3 threads (tx, ty, 1);
         dim3 blocks ((ny - 1) / tx + 1, (nx - 1) / ty + 1, 1);
-        col_update_int<<<threads, blocks>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
+        col_update_int<<<blocks, threads>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
                                            nx, ny, my, dt, k);
 
 }
@@ -213,12 +214,12 @@ void col_update(
         {
         dim3 threads (tx, 1, 1);
         dim3 blocks ((nx - 1) / tx + 1, nb, 1);
-        col_periodic_x<<<threads, blocks>>>(p.x, v1.x, v2.x, nx, ny, my);
+        col_periodic_x<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
         }
         {
         dim3 threads (tx, 1, 1);
         dim3 blocks ((ny - 1) / tx + 1, nb, 1);
-        col_periodic_y<<<threads, blocks>>>(p.x, v1.x, v2.x, nx, ny, my);
+        col_periodic_y<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
         }
 }
 #undef RSTRCT

@@ -28,12 +28,21 @@ def load_config(path, name):
     for line in f.readlines():
         key, value = line.strip('\n').split("=")
         d[key] = value
-    d.m = int(d.m)
-    d.n = int(d.n)
-    d.nnz = int(d.nnz)
-    d.nt = int(d.nt)
-    d.elapsed = float(d.elapsed)
-    d.avg = 1e3 * d.elapsed / d.nt
+    if 'm' in d:
+        d.m = int(d.m)
+    if 'n' in d:
+        d.n = int(d.n)
+    if 'nnz' in d:
+        d.nnz = int(d.nnz)
+    if 'nt' in d:
+        d.nt = int(d.nt)
+    if 'elapsed' in d:
+        d.elapsed = float(d.elapsed)
+        d.avg = 1e3 * d.elapsed / d.nt
+    if 'nx' in d:
+        d.nx = int(d.nx)
+    if 'ny' in d:
+        d.ny = int(d.ny)
     return d
 
 def norm_error(err, h):

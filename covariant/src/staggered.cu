@@ -1,10 +1,11 @@
 #define RSTRCT __restrict__
 
 const static int stx = 32;
-const static int sty = 16;
+const static int sty = 1;
 
-const static int snb = 4;
+const static int snb = 8;
 
+__launch_bounds__(32)
 __global__ void st_rates_int(Tv RSTRCT *dp, 
                 Tv RSTRCT *dv1, 
                 Tv RSTRCT *dv2, 
@@ -359,7 +360,7 @@ void st_rates(dArray<Tv>& dp, dArray<Tv>& dv1, dArray<Tv>& dv2,
 {
         dim3 threads (stx, sty, 1);
         dim3 blocks ((ny - 1) / stx + 1, (nx - 1) / sty + 1, 1);
-        st_rates_int<<<threads, blocks>>>(dp.x, dv1.x, dv2.x, p.x, v1.x, v2.x,
+        st_rates_int<<<blocks, threads>>>(dp.x, dv1.x, dv2.x, p.x, v1.x, v2.x,
                                            J.x, J1.x, J2.x, g11.x, g12.x, g22.x, nx, ny, my,
                                            hi1, hi2, k);
 }
@@ -371,7 +372,7 @@ void st_update(
 {
         dim3 threads (stx, sty, 1);
         dim3 blocks ((ny - 1) / stx + 1, (nx - 1) / ty + 1, 1);
-        st_update_int<<<threads, blocks>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
+        st_update_int<<<blocks, threads>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
                                            nx, ny, my, dt, k);
 
 }
@@ -382,12 +383,12 @@ void st_update(
         {
         dim3 threads (stx, 1, 1);
         dim3 blocks ((nx - 1) / stx + 1, nb, 1);
-        st_periodic_x<<<threads, blocks>>>(p.x, v1.x, v2.x, nx, ny, my);
+        st_periodic_x<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
         }
         {
         dim3 threads (stx, 1, 1);
         dim3 blocks ((ny - 1) / stx + 1, nb, 1);
-        st_periodic_y<<<threads, blocks>>>(p.x, v1.x, v2.x, nx, ny, my);
+        st_periodic_y<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
         }
 }
 #undef RSTRCT

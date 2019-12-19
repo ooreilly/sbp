@@ -40,6 +40,9 @@ int main(int argc, char **argv) {
         Tv hi1 = cfg["hi1"];
         Tv hi2 = cfg["hi2"];
         Tv dt = cfg["dt"];
+
+        std::string output_dir = cfg["outputdir"];
+        output_dir += "/";
         dump(cfg);
 
         hArray<Tv> p_ = read(project_dir + "p.bin");
@@ -106,8 +109,8 @@ int main(int argc, char **argv) {
                 for (int k = 0; k < rk4_n; ++k) {
                         t = step * dt + c[k]*dt;
 
-                        st_rates(dp, dv1, dv2, p, v1, v2, Jp, J1, J2, g1_11,
-                                 gp_12, g2_22, nx, ny, my, hi1, hi2, k);
+                        col_rates(dp, dv1, dv2, p, v1, v2, J, g11, g12, g22, nx,
+                                  ny, my, hi1, hi2, k);
 
                         // dp = dp + d * g(t + c[k]*dt)
                         Tv gval = ricker(t);
@@ -117,6 +120,17 @@ int main(int argc, char **argv) {
                 }
                 t = (1 + step) * dt;
 
+        }
+        
+        // Write log file
+        {
+        std::string out = output_dir + "log.txt";
+        FILE *fh = fopen(out.c_str(), "w");
+        fprintf(fh, "nx=%d\n", nx);
+        fprintf(fh, "ny=%d\n", ny);
+        fprintf(fh, "elapsed=%g\n", elapsed * 1e-3);
+        fprintf(fh, "nt=%d\n", nt);
+        fclose(fh);
         }
 
         cublasErrCheck(cublasDestroy(cublasH));
