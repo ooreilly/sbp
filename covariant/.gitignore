@@ -1,1 +1,6 @@
 plot/__pycache__/
+timing
+timing_stencil/
+default/
+visualization/
+build/
