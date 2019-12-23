@@ -61,9 +61,6 @@ err_m = []
 err_d = []
 
 for num in range(grid0, gridn):
-    err_c.append(np.linalg.norm(pc.err[num]))
-    err_m.append(np.linalg.norm(pm.err[num]))
-    err_d.append(np.linalg.norm(pd.err[num]))
     tc.append(ecc[num].avg)
     tm.append(ecm[num].avg)
 
@@ -71,31 +68,13 @@ for num in range(grid0, gridn):
     xm.append(cm[num].m)
     xd.append(cd[num].m)
 
-print("collocated", tc)
-print("staggered", tm)
-print("ratio", [b/a for a, b in zip(tc, tm)])
-
-print("collocated", err_c)
-print("staggered", err_m)
-
 fig, ax = plt.subplots()
-ax.loglog(tc, err_c, 'o-', label="collocated")
-ax.loglog(tm, err_m, 'o-', label="staggered-modified")
+ax.loglog(tc, pc.norm_rel_err, 'o-', label="collocated")
+ax.loglog(tm, pm.norm_rel_err, 'o-', label="staggered")
 plt.xlabel('Avg. time / time step (ms)')
-plt.ylabel('Error')
+plt.ylabel('Relative error')
 ax.set_xscale('log', basex=2)
-ax.set_yscale('log', basey=2)
+ax.set_yscale('log', basey=10)
 plt.legend()
 plt.savefig("efficiency.pdf")
 plt.show()
-
-fig, ax = plt.subplots()
-ax.loglog(xc, err_c, 'o-', label="collocated")
-ax.loglog(xm, err_m, 'o-', label="staggered-modified")
-ax.loglog(xd, err_d, 'o-', label="staggered-energy-pp")
-plt.xlabel('Number of grid points')
-plt.ylabel('Error')
-ax.set_xscale('log', basex=2)
-ax.set_yscale('log', basey=2)
-plt.legend()
-plt.savefig("convergence.pdf")

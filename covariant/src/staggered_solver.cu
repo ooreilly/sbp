@@ -10,6 +10,9 @@
 #include <cusparse.h>
 #include <string>
 
+typedef float Tv;
+typedef int Ti;
+
 #include "helper.hpp"
 #include "collocated.cu"
 #include "staggered.cu"
@@ -104,7 +107,7 @@ int main(int argc, char **argv) {
 
                 if ( nvtk > 0 && step % nvtk == 0) {
                         dtoh(p_, p);
-                        std::string out = project_dir + "p_" +
+                        std::string out = output_dir + "p_" +
                                           std::to_string(vtk_step) + ".vtk";
                         write_vtk(out, p_.x, xp_, yp_, nx, ny);
                         vtk_step++;

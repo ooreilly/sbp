@@ -1,8 +1,6 @@
 #ifndef HELPER_HPP
 #define HELPER_HPP
 
-typedef float Tv;
-typedef int Ti;
 // Runge-Kutta 4 coefficients
 const static int rk4_n = 5;
 static Tv a[5] = {0.0,
