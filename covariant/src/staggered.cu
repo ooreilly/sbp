@@ -283,51 +283,6 @@ __global__ void st_rates_int(Tv RSTRCT *dp,
         }
 }
 
-__global__ void st_periodic_x(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
-                             const Ti nx, const Ti ny,
-                             const Ti my) {
-
-
-        // top and bottom boundary
-        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
-        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
-        int p0p0 = j + i * my;
-        int p0p1 = p0p0 + snb;
-        
-        int p0m1 = p0p0 + ny - snb;
-        int p0m2 = p0m1 - snb;
-
-
-        if (j < snb && i < nx) {
-                p[p0p0] = p[p0m2];
-                p[p0m1] = p[p0p1];
-        }
-
-}
-
-__global__ void st_periodic_y(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
-                             const Ti nx, const Ti ny,
-                             const Ti my) {
-
-
-        // left and right boundary
-        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
-        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
-        int p0p0 = i + j * my;
-        int p1p0 = p0p0 + snb * my;
-        
-        int m1p0 = p0p0 + my * nx - snb * my;
-        int m2p0 = m1p0 - snb * my;
-
-
-        if (j < snb && i >= snb && i < ny - snb) {
-                p[p0p0] = p[m2p0];
-        }
-        if (j < snb && i >= snb && i < ny - snb) {
-                p[m1p0] = p[p1p0];
-        }
-
-}
 
 __global__ void st_update_int(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
                                const Tv RSTRCT *dp, const Tv RSTRCT *dv1,
@@ -361,8 +316,8 @@ void st_rates(dArray<Tv>& dp, dArray<Tv>& dv1, dArray<Tv>& dv2,
         dim3 threads (stx, sty, 1);
         dim3 blocks ((ny - 1) / stx + 1, (nx - 1) / sty + 1, 1);
         st_rates_int<<<blocks, threads>>>(dp.x, dv1.x, dv2.x, p.x, v1.x, v2.x,
-                                           J.x, J1.x, J2.x, g11.x, g12.x, g22.x, nx, ny, my,
-                                           hi1, hi2, k);
+                                          J.x, J1.x, J2.x, g11.x, g12.x, g22.x,
+                                          nx, ny, my, hi1, hi2, k);
 }
 
 void st_update(
@@ -375,20 +330,5 @@ void st_update(
         st_update_int<<<blocks, threads>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
                                            nx, ny, my, dt, k);
 
-}
- void st_periodic(
- dArray<Tv>& p, dArray<Tv>& v1, dArray<Tv>& v2,        
- const Ti nx, const Ti ny, const Ti my)
-{
-        {
-        dim3 threads (stx, 1, 1);
-        dim3 blocks ((nx - 1) / stx + 1, nb, 1);
-        st_periodic_x<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
-        }
-        {
-        dim3 threads (stx, 1, 1);
-        dim3 blocks ((ny - 1) / stx + 1, nb, 1);
-        st_periodic_y<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
-        }
 }
 #undef RSTRCT

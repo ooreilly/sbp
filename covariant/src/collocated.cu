@@ -116,51 +116,6 @@ __global__ void col_rates_int(Tv RSTRCT *dp,
         }
 }
 
-__global__ void col_periodic_x(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
-                             const Ti nx, const Ti ny,
-                             const Ti my) {
-
-
-        // top and bottom boundary
-        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
-        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
-        int p0p0 = j + i * my;
-        int p0p1 = p0p0 + nb;
-        
-        int p0m1 = p0p0 + ny - nb;
-        int p0m2 = p0m1 - nb;
-
-
-        if (j < nb && i < nx) {
-                p[p0p0] = p[p0m2];
-                p[p0m1] = p[p0p1];
-        }
-
-}
-
-__global__ void col_periodic_y(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
-                             const Ti nx, const Ti ny,
-                             const Ti my) {
-
-
-        // left and right boundary
-        Tv i = threadIdx.x + blockDim.x * blockIdx.x;
-        Tv j = threadIdx.y + blockDim.y * blockIdx.y;
-        int p0p0 = i + j * my;
-        int p1p0 = p0p0 + nb * my;
-        
-        int m1p0 = p0p0 + my * nx - nb * my;
-        int m2p0 = m1p0 - nb * my;
-
-
-        if (j < nb && i >= nb && i < ny - nb) {
-                p[p0p0] = p[m2p0];
-        }
-        if (j < nb && i >= nb && i < ny - nb) {
-                p[m1p0] = p[p1p0];
-        }
-
-}
 
 __global__ void col_update_int(Tv RSTRCT *p, Tv RSTRCT *v1, Tv RSTRCT *v2,
                                const Tv RSTRCT *dp, const Tv RSTRCT *dv1,
@@ -206,20 +161,5 @@ void col_update(
         col_update_int<<<blocks, threads>>>(p.x, v1.x, v2.x, dp.x, dv1.x, dv2.x,
                                            nx, ny, my, dt, k);
 
-}
- void col_periodic(
- dArray<Tv>& p, dArray<Tv>& v1, dArray<Tv>& v2,        
- const Ti nx, const Ti ny, const Ti my)
-{
-        {
-        dim3 threads (tx, 1, 1);
-        dim3 blocks ((nx - 1) / tx + 1, nb, 1);
-        col_periodic_x<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
-        }
-        {
-        dim3 threads (tx, 1, 1);
-        dim3 blocks ((ny - 1) / tx + 1, nb, 1);
-        col_periodic_y<<<blocks, threads>>>(p.x, v1.x, v2.x, nx, ny, my);
-        }
 }
 #undef RSTRCT
