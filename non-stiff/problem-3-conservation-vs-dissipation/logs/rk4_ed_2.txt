@@ -1,0 +1,54 @@
+build/acoustic output/rk4_ed_2 2 2 3 102 202 1.0 2.0 0.412 -100 1 0.5 6.4 0.25 0.45 1.0
+Acoustic solver
+Coupling type: 3 
+grid size 0 : 198 802, spacing : 0.002551 0.002500  
+grid size 1 : 402 802, spacing : 0.002500 0.002500  
+Time step: 0.0002575 
+Number of steps: 1942 
+coupling = 3 
+Initialization completed
+CUDA memory: free = 10.390012 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.012875 
+step = 100 	 t = 0.02575 
+step = 150 	 t = 0.038625 
+step = 200 	 t = 0.0515 
+step = 250 	 t = 0.064375 
+step = 300 	 t = 0.07725 
+step = 350 	 t = 0.090125 
+step = 400 	 t = 0.103 
+step = 450 	 t = 0.115875 
+step = 500 	 t = 0.12875 
+step = 550 	 t = 0.141625 
+step = 600 	 t = 0.1545 
+step = 650 	 t = 0.167375 
+step = 700 	 t = 0.18025 
+step = 750 	 t = 0.193125 
+step = 800 	 t = 0.206 
+step = 850 	 t = 0.218875 
+step = 900 	 t = 0.23175 
+step = 950 	 t = 0.244625 
+step = 1000 	 t = 0.2575 
+step = 1050 	 t = 0.270375 
+step = 1100 	 t = 0.28325 
+step = 1150 	 t = 0.296125 
+step = 1200 	 t = 0.309 
+step = 1250 	 t = 0.321875 
+step = 1300 	 t = 0.33475 
+step = 1350 	 t = 0.347625 
+step = 1400 	 t = 0.3605 
+step = 1450 	 t = 0.373375 
+step = 1500 	 t = 0.38625 
+step = 1550 	 t = 0.399125 
+step = 1600 	 t = 0.412 
+step = 1650 	 t = 0.424875 
+step = 1700 	 t = 0.43775 
+step = 1750 	 t = 0.450625 
+step = 1800 	 t = 0.4635 
+step = 1850 	 t = 0.476375 
+step = 1900 	 t = 0.48925 
+step = 1941 	 t = 0.5 
+Simulation took: 19.0112 s 
+wrote: output/rk4_ed_2_p0.bin 
+wrote: output/rk4_ed_2_p1.bin 
+wrote: output/rk4_ed_2_t.bin 

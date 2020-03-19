@@ -1,0 +1,97 @@
+./acoustic output/rk4_no_diss_5 5 2 0 102 102 1.0 1.0 0.95 -100 1
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 3202 3202, spacing : 0.000313 0.000313  
+grid size 1 : 3202 3202, spacing : 0.000313 0.000313  
+Time step: 0.000296875 
+Number of steps: 4211 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.0148437 
+step = 100 	 t = 0.0296875 
+step = 150 	 t = 0.0445313 
+step = 200 	 t = 0.059375 
+step = 250 	 t = 0.0742188 
+step = 300 	 t = 0.0890625 
+step = 350 	 t = 0.103906 
+step = 400 	 t = 0.11875 
+step = 450 	 t = 0.133594 
+step = 500 	 t = 0.148438 
+step = 550 	 t = 0.163281 
+step = 600 	 t = 0.178125 
+step = 650 	 t = 0.192969 
+step = 700 	 t = 0.207812 
+step = 750 	 t = 0.222656 
+step = 800 	 t = 0.2375 
+step = 850 	 t = 0.252344 
+step = 900 	 t = 0.267187 
+step = 950 	 t = 0.282031 
+step = 1000 	 t = 0.296875 
+step = 1050 	 t = 0.311719 
+step = 1100 	 t = 0.326562 
+step = 1150 	 t = 0.341406 
+step = 1200 	 t = 0.35625 
+step = 1250 	 t = 0.371094 
+step = 1300 	 t = 0.385937 
+step = 1350 	 t = 0.400781 
+step = 1400 	 t = 0.415625 
+step = 1450 	 t = 0.430469 
+step = 1500 	 t = 0.445312 
+step = 1550 	 t = 0.460156 
+step = 1600 	 t = 0.475 
+step = 1650 	 t = 0.489844 
+step = 1700 	 t = 0.504687 
+step = 1750 	 t = 0.519531 
+step = 1800 	 t = 0.534375 
+step = 1850 	 t = 0.549219 
+step = 1900 	 t = 0.564062 
+step = 1950 	 t = 0.578906 
+step = 2000 	 t = 0.59375 
+step = 2050 	 t = 0.608594 
+step = 2100 	 t = 0.623437 
+step = 2150 	 t = 0.638281 
+step = 2200 	 t = 0.653125 
+step = 2250 	 t = 0.667969 
+step = 2300 	 t = 0.682812 
+step = 2350 	 t = 0.697656 
+step = 2400 	 t = 0.7125 
+step = 2450 	 t = 0.727344 
+step = 2500 	 t = 0.742188 
+step = 2550 	 t = 0.757031 
+step = 2600 	 t = 0.771875 
+step = 2650 	 t = 0.786719 
+step = 2700 	 t = 0.801562 
+step = 2750 	 t = 0.816406 
+step = 2800 	 t = 0.83125 
+step = 2850 	 t = 0.846094 
+step = 2900 	 t = 0.860937 
+step = 2950 	 t = 0.875781 
+step = 3000 	 t = 0.890625 
+step = 3050 	 t = 0.905469 
+step = 3100 	 t = 0.920312 
+step = 3150 	 t = 0.935156 
+step = 3200 	 t = 0.95 
+step = 3250 	 t = 0.964844 
+step = 3300 	 t = 0.979687 
+step = 3350 	 t = 0.994531 
+step = 3400 	 t = 1.00938 
+step = 3450 	 t = 1.02422 
+step = 3500 	 t = 1.03906 
+step = 3550 	 t = 1.05391 
+step = 3600 	 t = 1.06875 
+step = 3650 	 t = 1.08359 
+step = 3700 	 t = 1.09844 
+step = 3750 	 t = 1.11328 
+step = 3800 	 t = 1.12813 
+step = 3850 	 t = 1.14297 
+step = 3900 	 t = 1.15781 
+step = 3950 	 t = 1.17266 
+step = 4000 	 t = 1.1875 
+step = 4050 	 t = 1.20234 
+step = 4100 	 t = 1.21719 
+step = 4150 	 t = 1.23203 
+step = 4200 	 t = 1.24687 
+step = 4210 	 t = 1.25 
+Simulation took: 321.242 s 
+wrote: output/rk4_no_diss_5_p.bin 
+wrote: output/rk4_no_diss_5_t.bin 

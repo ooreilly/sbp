@@ -1,0 +1,23 @@
+./acoustic output/srk4_6 6 1 0 102 102 1.0 1.0 1.5 -100
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 6402 6402, spacing : 0.000156 0.000156  
+grid size 1 : 6402 6402, spacing : 0.000156 0.000156  
+Time step: 0.000234375 
+Number of steps: 5333 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.0117188 
+step = 100 	 t = 0.0234375 
+step = 150 	 t = 0.0351562 
+step = 200 	 t = 0.046875 
+step = 250 	 t = 0.0585938 
+step = 300 	 t = 0.0703125 
+step = 350 	 t = 0.0820312 
+step = 400 	 t = 0.09375 
+step = 450 	 t = 0.105469 
+step = 500 	 t = 0.117187 
+step = 550 	 t = 0.128906 
+step = 600 	 t = 0.140625 
+step = 650 	 t = 0.152344 
+step = 700 	 t = 0.164062 

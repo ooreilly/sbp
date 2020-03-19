@@ -1,0 +1,20 @@
+build/acoustic output/srk4_ec3_1 1 1 6 102 202 1.0 2.0 1.725 -100 1 0.5 6.4 0.25 0.45 1.0
+Acoustic solver
+Coupling type: 6 
+grid size 0 : 100 402, spacing : 0.005102 0.005000  
+grid size 1 : 202 402, spacing : 0.005000 0.005000  
+Time step: 0.00215625 
+Number of steps: 232 
+coupling = 6 
+Initialization completed
+CUDA memory: free = 8.040940 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.107813 
+step = 100 	 t = 0.215625 
+step = 150 	 t = 0.323438 
+step = 200 	 t = 0.43125 
+step = 231 	 t = 0.5 
+Simulation took: 3.13382 s 
+wrote: output/srk4_ec3_1_p0.bin 
+wrote: output/srk4_ec3_1_p1.bin 
+wrote: output/srk4_ec3_1_t.bin 

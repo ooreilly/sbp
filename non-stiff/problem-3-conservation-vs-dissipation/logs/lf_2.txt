@@ -1,0 +1,37 @@
+./acoustic output/lf_2 2 0 0 102 102 1.0 1.0 0.4 -100
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 402 402, spacing : 0.002500 0.002500  
+grid size 1 : 402 402, spacing : 0.002500 0.002500  
+Time step: 0.001 
+Number of steps: 1250 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.05 
+step = 100 	 t = 0.1 
+step = 150 	 t = 0.15 
+step = 200 	 t = 0.2 
+step = 250 	 t = 0.25 
+step = 300 	 t = 0.3 
+step = 350 	 t = 0.35 
+step = 400 	 t = 0.4 
+step = 450 	 t = 0.45 
+step = 500 	 t = 0.5 
+step = 550 	 t = 0.55 
+step = 600 	 t = 0.6 
+step = 650 	 t = 0.65 
+step = 700 	 t = 0.7 
+step = 750 	 t = 0.75 
+step = 800 	 t = 0.8 
+step = 850 	 t = 0.85 
+step = 900 	 t = 0.9 
+step = 950 	 t = 0.95 
+step = 1000 	 t = 1 
+step = 1050 	 t = 1.05 
+step = 1100 	 t = 1.1 
+step = 1150 	 t = 1.15 
+step = 1200 	 t = 1.2 
+step = 1249 	 t = 1.25 
+Simulation took: 1.81636 s 
+wrote: output/lf_2_p.bin 
+wrote: output/lf_2_t.bin 

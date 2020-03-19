@@ -1,0 +1,99 @@
+./acoustic output/p2_srk4_2 2 1 0 802 802 1.0 1.0 1.5 -100 1 2.00 64.0 0.0625 0.75 0.5 0.5 0.5
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 3202 3202, spacing : 0.000313 0.000313  
+grid size 1 : 3202 3202, spacing : 0.000313 0.000313  
+Time step: 0.00046875 
+Number of steps: 4267 
+Initialization completed
+CUDA memory: free = 4.819059 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.0234375 
+step = 100 	 t = 0.046875 
+step = 150 	 t = 0.0703125 
+step = 200 	 t = 0.09375 
+step = 250 	 t = 0.117188 
+step = 300 	 t = 0.140625 
+step = 350 	 t = 0.164062 
+step = 400 	 t = 0.1875 
+step = 450 	 t = 0.210937 
+step = 500 	 t = 0.234375 
+step = 550 	 t = 0.257812 
+step = 600 	 t = 0.28125 
+step = 650 	 t = 0.304688 
+step = 700 	 t = 0.328125 
+step = 750 	 t = 0.351562 
+step = 800 	 t = 0.375 
+step = 850 	 t = 0.398438 
+step = 900 	 t = 0.421875 
+step = 950 	 t = 0.445312 
+step = 1000 	 t = 0.46875 
+step = 1050 	 t = 0.492188 
+step = 1100 	 t = 0.515625 
+step = 1150 	 t = 0.539062 
+step = 1200 	 t = 0.5625 
+step = 1250 	 t = 0.585938 
+step = 1300 	 t = 0.609375 
+step = 1350 	 t = 0.632812 
+step = 1400 	 t = 0.65625 
+step = 1450 	 t = 0.679688 
+step = 1500 	 t = 0.703125 
+step = 1550 	 t = 0.726562 
+step = 1600 	 t = 0.75 
+step = 1650 	 t = 0.773438 
+step = 1700 	 t = 0.796875 
+step = 1750 	 t = 0.820312 
+step = 1800 	 t = 0.84375 
+step = 1850 	 t = 0.867188 
+step = 1900 	 t = 0.890625 
+step = 1950 	 t = 0.914062 
+step = 2000 	 t = 0.9375 
+step = 2050 	 t = 0.960938 
+step = 2100 	 t = 0.984375 
+step = 2150 	 t = 1.00781 
+step = 2200 	 t = 1.03125 
+step = 2250 	 t = 1.05469 
+step = 2300 	 t = 1.07812 
+step = 2350 	 t = 1.10156 
+step = 2400 	 t = 1.125 
+step = 2450 	 t = 1.14844 
+step = 2500 	 t = 1.17188 
+step = 2550 	 t = 1.19531 
+step = 2600 	 t = 1.21875 
+step = 2650 	 t = 1.24219 
+step = 2700 	 t = 1.26562 
+step = 2750 	 t = 1.28906 
+step = 2800 	 t = 1.3125 
+step = 2850 	 t = 1.33594 
+step = 2900 	 t = 1.35938 
+step = 2950 	 t = 1.38281 
+step = 3000 	 t = 1.40625 
+step = 3050 	 t = 1.42969 
+step = 3100 	 t = 1.45312 
+step = 3150 	 t = 1.47656 
+step = 3200 	 t = 1.5 
+step = 3250 	 t = 1.52344 
+step = 3300 	 t = 1.54688 
+step = 3350 	 t = 1.57031 
+step = 3400 	 t = 1.59375 
+step = 3450 	 t = 1.61719 
+step = 3500 	 t = 1.64062 
+step = 3550 	 t = 1.66406 
+step = 3600 	 t = 1.6875 
+step = 3650 	 t = 1.71094 
+step = 3700 	 t = 1.73438 
+step = 3750 	 t = 1.75781 
+step = 3800 	 t = 1.78125 
+step = 3850 	 t = 1.80469 
+step = 3900 	 t = 1.82812 
+step = 3950 	 t = 1.85156 
+step = 4000 	 t = 1.875 
+step = 4050 	 t = 1.89844 
+step = 4100 	 t = 1.92188 
+step = 4150 	 t = 1.94531 
+step = 4200 	 t = 1.96875 
+step = 4250 	 t = 1.99219 
+step = 4266 	 t = 2 
+Simulation took: 335.296 s 
+wrote: output/p2_srk4_2_p.bin 
+wrote: output/p2_srk4_2_t.bin 

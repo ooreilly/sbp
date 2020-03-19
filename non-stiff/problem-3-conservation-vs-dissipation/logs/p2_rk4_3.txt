@@ -1,0 +1,11 @@
+./acoustic output/p2_rk4_3 3 2 1 802 802 1.0 1.0 0.95 -100 1 2.00 64.0 0.0625 0.75 0.5 0.5 0.5
+Acoustic solver
+Energy dissipative coupling: 1 
+grid size 0 : 6402 6402, spacing : 0.000156 0.000156  
+grid size 1 : 6402 6402, spacing : 0.000156 0.000156  
+Time step: 0.000148437 
+Number of steps: 13474 
+Initialization completed
+CUDA memory: free = 0.494338 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.00742187 

@@ -1,0 +1,62 @@
+./acoustic output/lf_3 3 0 0 102 102 1.0 1.0 0.4 -100
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 802 802, spacing : 0.001250 0.001250  
+grid size 1 : 802 802, spacing : 0.001250 0.001250  
+Time step: 0.0005 
+Number of steps: 2500 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.025 
+step = 100 	 t = 0.05 
+step = 150 	 t = 0.075 
+step = 200 	 t = 0.1 
+step = 250 	 t = 0.125 
+step = 300 	 t = 0.15 
+step = 350 	 t = 0.175 
+step = 400 	 t = 0.2 
+step = 450 	 t = 0.225 
+step = 500 	 t = 0.25 
+step = 550 	 t = 0.275 
+step = 600 	 t = 0.3 
+step = 650 	 t = 0.325 
+step = 700 	 t = 0.35 
+step = 750 	 t = 0.375 
+step = 800 	 t = 0.4 
+step = 850 	 t = 0.425 
+step = 900 	 t = 0.45 
+step = 950 	 t = 0.475 
+step = 1000 	 t = 0.5 
+step = 1050 	 t = 0.525 
+step = 1100 	 t = 0.55 
+step = 1150 	 t = 0.575 
+step = 1200 	 t = 0.6 
+step = 1250 	 t = 0.625 
+step = 1300 	 t = 0.65 
+step = 1350 	 t = 0.675 
+step = 1400 	 t = 0.7 
+step = 1450 	 t = 0.725 
+step = 1500 	 t = 0.75 
+step = 1550 	 t = 0.775 
+step = 1600 	 t = 0.8 
+step = 1650 	 t = 0.825 
+step = 1700 	 t = 0.85 
+step = 1750 	 t = 0.875 
+step = 1800 	 t = 0.9 
+step = 1850 	 t = 0.925 
+step = 1900 	 t = 0.95 
+step = 1950 	 t = 0.975 
+step = 2000 	 t = 1 
+step = 2050 	 t = 1.025 
+step = 2100 	 t = 1.05 
+step = 2150 	 t = 1.075 
+step = 2200 	 t = 1.1 
+step = 2250 	 t = 1.125 
+step = 2300 	 t = 1.15 
+step = 2350 	 t = 1.175 
+step = 2400 	 t = 1.2 
+step = 2450 	 t = 1.225 
+step = 2499 	 t = 1.25 
+Simulation took: 5.21063 s 
+wrote: output/lf_3_p.bin 
+wrote: output/lf_3_t.bin 

@@ -1,0 +1,18 @@
+./acoustic output/rk4_no_diss_1 1 2 0 102 102 1.0 1.0 0.95 -100 1
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 202 202, spacing : 0.005000 0.005000  
+grid size 1 : 202 202, spacing : 0.005000 0.005000  
+Time step: 0.00475 
+Number of steps: 263 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.2375 
+step = 100 	 t = 0.475 
+step = 150 	 t = 0.7125 
+step = 200 	 t = 0.95 
+step = 250 	 t = 1.1875 
+step = 262 	 t = 1.25 
+Simulation took: 1.73688 s 
+wrote: output/rk4_no_diss_1_p.bin 
+wrote: output/rk4_no_diss_1_t.bin 

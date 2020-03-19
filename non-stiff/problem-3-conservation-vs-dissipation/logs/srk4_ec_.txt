@@ -1,0 +1,23 @@
+build/acoustic output/srk4_ec_  1 2 102 202 1.0 2.0 1.727 -100 1 0.5 6.4 0.25 0.45 1.0
+Acoustic solver
+usage: build/acoustic <name> <refinement> <time_stepping_scheme> <nx> <ny> <h> <nu> <vtk_stride> <T> <fp> <t0> <sx> <sy> 
+Options
+ name:                  Output filename 
+ refinement:            Grid refinement number 
+ time_stepping_scheme:  0 = leap-frog, 1 = staggered RK4, 2 = RK4 
+ coupling method:       2 = energy conserving, 3 = energy dissipating, 4 = energy conserving (naive)
+ nx:                    Grid points x 
+ ny:                    Grid points y 
+ Lx:                    Domain size x 
+ Ly:                    Domain size y 
+ nu:                    Time step scaling factor, dt = nu * h
+ vtk_stride:            VTK output stride factor. 
+                        Output every `vtk_stride` time steps (also influenced by refinement)
+                        Use negative number to disable
+ stride:            Time series output stride factor. 
+  T:            Simulation end time. 
+  fp:            Source central frequency. 
+  t0:            Source start time. 
+  sx:            Source x-coordinate. 
+  sy:            Source y-coordinate. 
+ Makefile:43: recipe for target 'srk4_ec' failed
