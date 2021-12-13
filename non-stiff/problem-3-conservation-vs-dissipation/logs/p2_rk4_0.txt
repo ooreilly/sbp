@@ -1,0 +1,47 @@
+./acoustic output/p2_rk4_0 0 2 1 802 802 1.0 1.0 0.95 -100 1 2.00 64.0 0.0625 0.75 0.5 0.5 0.5
+Acoustic solver
+Energy dissipative coupling: 1 
+grid size 0 : 802 802, spacing : 0.001250 0.001250  
+grid size 1 : 802 802, spacing : 0.001250 0.001250  
+Time step: 0.0011875 
+Number of steps: 1684 
+Initialization completed
+CUDA memory: free = 8.756134 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.059375 
+step = 100 	 t = 0.11875 
+step = 150 	 t = 0.178125 
+step = 200 	 t = 0.2375 
+step = 250 	 t = 0.296875 
+step = 300 	 t = 0.35625 
+step = 350 	 t = 0.415625 
+step = 400 	 t = 0.475 
+step = 450 	 t = 0.534375 
+step = 500 	 t = 0.59375 
+step = 550 	 t = 0.653125 
+step = 600 	 t = 0.7125 
+step = 650 	 t = 0.771875 
+step = 700 	 t = 0.83125 
+step = 750 	 t = 0.890625 
+step = 800 	 t = 0.95 
+step = 850 	 t = 1.00937 
+step = 900 	 t = 1.06875 
+step = 950 	 t = 1.12812 
+step = 1000 	 t = 1.1875 
+step = 1050 	 t = 1.24687 
+step = 1100 	 t = 1.30625 
+step = 1150 	 t = 1.36562 
+step = 1200 	 t = 1.425 
+step = 1250 	 t = 1.48437 
+step = 1300 	 t = 1.54375 
+step = 1350 	 t = 1.60312 
+step = 1400 	 t = 1.6625 
+step = 1450 	 t = 1.72187 
+step = 1500 	 t = 1.78125 
+step = 1550 	 t = 1.84062 
+step = 1600 	 t = 1.9 
+step = 1650 	 t = 1.95937 
+step = 1683 	 t = 2 
+Simulation took: 19.441 s 
+wrote: output/p2_rk4_0_p.bin 
+wrote: output/p2_rk4_0_t.bin 

@@ -1,0 +1,21 @@
+./acoustic output/debug_lf_0 0 0 0 102 102 1.0 1.0 0.3 -100 1
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 102 102, spacing : 0.010000 0.010000  
+grid size 1 : 102 102, spacing : 0.010000 0.010000  
+Time step: 0.003 
+Number of steps: 417 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.15 
+step = 100 	 t = 0.3 
+step = 150 	 t = 0.45 
+step = 200 	 t = 0.6 
+step = 250 	 t = 0.75 
+step = 300 	 t = 0.9 
+step = 350 	 t = 1.05 
+step = 400 	 t = 1.2 
+step = 416 	 t = 1.25 
+Simulation took: 0.459835 s 
+wrote: output/debug_lf_0_p.bin 
+wrote: output/debug_lf_0_t.bin 

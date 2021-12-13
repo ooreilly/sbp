@@ -1,5 +1,12 @@
-# sbp
-This repository contains summation-by-parts (SBP) operators
+# SBP
+This repository contains summation-by-parts (SBP) operators and codes used in the following list of
+publications.
+
+## Provably Non-stiff implementation of weak coupling conditions for hyperbolic problems 
+The directory *non-stiff* contains source codes and scripts to reproduce most of the work presented
+in 
+* O. O'Reilly, J. Nordström  
+Provably Non-stiff implementation of weak coupling conditions for hyperbolic problems (submitted to Numerische Mathematik July 2020) 
 
 ## SBP Staggered interpolation and differentiation operators 
 The directory *covariant* contains a MATLAB implementation of the SBP operators presented in 
@@ -13,12 +20,12 @@ The directory *staggered-upwind* contains a MATLAB implementation of the SBP ope
 Volume 352, 1 January 2018, Pages 52-75, 
 https://doi.org/10.1016/j.jcp.2017.09.044
 
-
 ## Staggered grid SBP operators
 The directory *staggered* contains a MATLAB implementation of the SBP operators presented in  
 
 * O. O'Reilly, T. Lundquist, J. Nordström, and E. M. Dunham, Energy stable and high-order-accurate finite
   difference methods on staggered grids, Journal of Computational Physics, Volume 346, 2017, Pages 572-589, http://dx.doi.org/10.1016/j.jcp.2017.06.030 
+
 ## Axisymmetric SBP operators
 The directory *axisymmetric* contains a MATLAB implementation of the SBP operators presented in  
 

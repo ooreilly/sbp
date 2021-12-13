@@ -1,0 +1,133 @@
+build/acoustic output/rk4_naive_1 1 2 4 102 202 1.0 2.0 0.068 -100 1 0.5 6.4 0.25 0.45 1.0
+Acoustic solver
+Coupling type: 4 
+grid size 0 : 100 402, spacing : 0.005102 0.005000  
+grid size 1 : 202 402, spacing : 0.005000 0.005000  
+Time step: 8.5e-05 
+Number of steps: 5882 
+coupling = 4 
+Initialization completed
+CUDA memory: free = 10.491789 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.00425 
+step = 100 	 t = 0.0085 
+step = 150 	 t = 0.01275 
+step = 200 	 t = 0.017 
+step = 250 	 t = 0.02125 
+step = 300 	 t = 0.0255 
+step = 350 	 t = 0.02975 
+step = 400 	 t = 0.034 
+step = 450 	 t = 0.03825 
+step = 500 	 t = 0.0425 
+step = 550 	 t = 0.04675 
+step = 600 	 t = 0.051 
+step = 650 	 t = 0.05525 
+step = 700 	 t = 0.0595 
+step = 750 	 t = 0.06375 
+step = 800 	 t = 0.068 
+step = 850 	 t = 0.07225 
+step = 900 	 t = 0.0765 
+step = 950 	 t = 0.08075 
+step = 1000 	 t = 0.085 
+step = 1050 	 t = 0.08925 
+step = 1100 	 t = 0.0935 
+step = 1150 	 t = 0.09775 
+step = 1200 	 t = 0.102 
+step = 1250 	 t = 0.10625 
+step = 1300 	 t = 0.1105 
+step = 1350 	 t = 0.11475 
+step = 1400 	 t = 0.119 
+step = 1450 	 t = 0.12325 
+step = 1500 	 t = 0.1275 
+step = 1550 	 t = 0.13175 
+step = 1600 	 t = 0.136 
+step = 1650 	 t = 0.14025 
+step = 1700 	 t = 0.1445 
+step = 1750 	 t = 0.14875 
+step = 1800 	 t = 0.153 
+step = 1850 	 t = 0.15725 
+step = 1900 	 t = 0.1615 
+step = 1950 	 t = 0.16575 
+step = 2000 	 t = 0.17 
+step = 2050 	 t = 0.17425 
+step = 2100 	 t = 0.1785 
+step = 2150 	 t = 0.18275 
+step = 2200 	 t = 0.187 
+step = 2250 	 t = 0.19125 
+step = 2300 	 t = 0.1955 
+step = 2350 	 t = 0.19975 
+step = 2400 	 t = 0.204 
+step = 2450 	 t = 0.20825 
+step = 2500 	 t = 0.2125 
+step = 2550 	 t = 0.21675 
+step = 2600 	 t = 0.221 
+step = 2650 	 t = 0.22525 
+step = 2700 	 t = 0.2295 
+step = 2750 	 t = 0.23375 
+step = 2800 	 t = 0.238 
+step = 2850 	 t = 0.24225 
+step = 2900 	 t = 0.2465 
+step = 2950 	 t = 0.25075 
+step = 3000 	 t = 0.255 
+step = 3050 	 t = 0.25925 
+step = 3100 	 t = 0.2635 
+step = 3150 	 t = 0.26775 
+step = 3200 	 t = 0.272 
+step = 3250 	 t = 0.27625 
+step = 3300 	 t = 0.2805 
+step = 3350 	 t = 0.28475 
+step = 3400 	 t = 0.289 
+step = 3450 	 t = 0.29325 
+step = 3500 	 t = 0.2975 
+step = 3550 	 t = 0.30175 
+step = 3600 	 t = 0.306 
+step = 3650 	 t = 0.31025 
+step = 3700 	 t = 0.3145 
+step = 3750 	 t = 0.31875 
+step = 3800 	 t = 0.323 
+step = 3850 	 t = 0.32725 
+step = 3900 	 t = 0.3315 
+step = 3950 	 t = 0.33575 
+step = 4000 	 t = 0.34 
+step = 4050 	 t = 0.34425 
+step = 4100 	 t = 0.3485 
+step = 4150 	 t = 0.35275 
+step = 4200 	 t = 0.357 
+step = 4250 	 t = 0.36125 
+step = 4300 	 t = 0.3655 
+step = 4350 	 t = 0.36975 
+step = 4400 	 t = 0.374 
+step = 4450 	 t = 0.37825 
+step = 4500 	 t = 0.3825 
+step = 4550 	 t = 0.38675 
+step = 4600 	 t = 0.391 
+step = 4650 	 t = 0.39525 
+step = 4700 	 t = 0.3995 
+step = 4750 	 t = 0.40375 
+step = 4800 	 t = 0.408 
+step = 4850 	 t = 0.41225 
+step = 4900 	 t = 0.4165 
+step = 4950 	 t = 0.42075 
+step = 5000 	 t = 0.425 
+step = 5050 	 t = 0.42925 
+step = 5100 	 t = 0.4335 
+step = 5150 	 t = 0.43775 
+step = 5200 	 t = 0.442 
+step = 5250 	 t = 0.44625 
+step = 5300 	 t = 0.4505 
+step = 5350 	 t = 0.45475 
+step = 5400 	 t = 0.459 
+step = 5450 	 t = 0.46325 
+step = 5500 	 t = 0.4675 
+step = 5550 	 t = 0.47175 
+step = 5600 	 t = 0.476 
+step = 5650 	 t = 0.48025 
+step = 5700 	 t = 0.4845 
+step = 5750 	 t = 0.48875 
+step = 5800 	 t = 0.493 
+step = 5850 	 t = 0.49725 
+step = 5881 	 t = 0.5 
+Simulation took: 35.8321 s 
+wrote: output/rk4_naive_1_p0.bin 
+wrote: output/rk4_naive_1_p1.bin 
+wrote: output/rk4_naive_1_t.bin 

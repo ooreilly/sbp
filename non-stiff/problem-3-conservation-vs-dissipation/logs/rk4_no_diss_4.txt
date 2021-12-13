@@ -1,0 +1,55 @@
+./acoustic output/rk4_no_diss_4 4 2 0 102 102 1.0 1.0 0.95 -100 1
+Acoustic solver
+Energy dissipative coupling: 0 
+grid size 0 : 1602 1602, spacing : 0.000625 0.000625  
+grid size 1 : 1602 1602, spacing : 0.000625 0.000625  
+Time step: 0.00059375 
+Number of steps: 2105 
+Initialization completed
+step = 0 	 t = 0 
+step = 50 	 t = 0.0296875 
+step = 100 	 t = 0.059375 
+step = 150 	 t = 0.0890625 
+step = 200 	 t = 0.11875 
+step = 250 	 t = 0.148438 
+step = 300 	 t = 0.178125 
+step = 350 	 t = 0.207813 
+step = 400 	 t = 0.2375 
+step = 450 	 t = 0.267188 
+step = 500 	 t = 0.296875 
+step = 550 	 t = 0.326562 
+step = 600 	 t = 0.35625 
+step = 650 	 t = 0.385937 
+step = 700 	 t = 0.415625 
+step = 750 	 t = 0.445312 
+step = 800 	 t = 0.475 
+step = 850 	 t = 0.504687 
+step = 900 	 t = 0.534375 
+step = 950 	 t = 0.564062 
+step = 1000 	 t = 0.59375 
+step = 1050 	 t = 0.623437 
+step = 1100 	 t = 0.653125 
+step = 1150 	 t = 0.682812 
+step = 1200 	 t = 0.7125 
+step = 1250 	 t = 0.742187 
+step = 1300 	 t = 0.771875 
+step = 1350 	 t = 0.801562 
+step = 1400 	 t = 0.83125 
+step = 1450 	 t = 0.860937 
+step = 1500 	 t = 0.890625 
+step = 1550 	 t = 0.920312 
+step = 1600 	 t = 0.95 
+step = 1650 	 t = 0.979687 
+step = 1700 	 t = 1.00937 
+step = 1750 	 t = 1.03906 
+step = 1800 	 t = 1.06875 
+step = 1850 	 t = 1.09844 
+step = 1900 	 t = 1.12812 
+step = 1950 	 t = 1.15781 
+step = 2000 	 t = 1.1875 
+step = 2050 	 t = 1.21719 
+step = 2100 	 t = 1.24687 
+step = 2104 	 t = 1.25 
+Simulation took: 59.5497 s 
+wrote: output/rk4_no_diss_4_p.bin 
+wrote: output/rk4_no_diss_4_t.bin 

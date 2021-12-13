@@ -1,0 +1,25 @@
+build/acoustic output/rk4_ed_0 0 2 3 102 202 1.0 2.0 0.412 -100 1 0.5 6.4 0.25 0.45 1.0
+Acoustic solver
+Coupling type: 3 
+grid size 0 : 51 202, spacing : 0.010204 0.010000  
+grid size 1 : 102 202, spacing : 0.010000 0.010000  
+Time step: 0.00103 
+Number of steps: 485 
+coupling = 3 
+Initialization completed
+CUDA memory: free = 10.534912 GB 	total = 11.553341 GB 
+step = 0 	 t = 0 
+step = 50 	 t = 0.0515 
+step = 100 	 t = 0.103 
+step = 150 	 t = 0.1545 
+step = 200 	 t = 0.206 
+step = 250 	 t = 0.2575 
+step = 300 	 t = 0.309 
+step = 350 	 t = 0.3605 
+step = 400 	 t = 0.412 
+step = 450 	 t = 0.4635 
+step = 484 	 t = 0.5 
+Simulation took: 2.36224 s 
+wrote: output/rk4_ed_0_p0.bin 
+wrote: output/rk4_ed_0_p1.bin 
+wrote: output/rk4_ed_0_t.bin 
